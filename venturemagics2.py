@@ -61,8 +61,11 @@ class VentureMagics2(Magics):
 
             if directives: # if non-empty, print last directive added
                 print directive_summary( ipy_ripl.list_directives()[-1] )
+                value = ipy_ripl.list_directives()[-1]['value']
+            else:
+                value = None
 
-            return venture_outs
+            return value,venture_outs
             
         ## CELL MAGIC    
         else:
@@ -76,11 +79,14 @@ class VentureMagics2(Magics):
 
             # diff is slow, speed up by assuming no [CLEAR] directive
             # diff  = ipy_ripl.list_directives()[ len(old_directives) :]
+
+            values = []
             
             for directive in diff:
-                print directive_summary(directive)                
+                print directive_summary(directive)
+                values.append(directive['value'])
 
-            return venture_outs
+            return values,venture_outs
     
     
     
