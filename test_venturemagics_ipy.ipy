@@ -1,6 +1,6 @@
 ## Tests for Venturemagics2.py (IPython Form)
 
-%run venturemagics2.py
+%run venturemagics.py
 
 # output of directive is first arg of %v output
 a,_ = %v [predict (+ 1.0 2.0)]

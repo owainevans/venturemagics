@@ -11,10 +11,10 @@ except:
         
 
 @magics_class
-class VentureMagics2(Magics):
+class VentureMagics(Magics):
 
     def __init__(self, shell):
-        super(VentureMagics2, self).__init__(shell)
+        super(VentureMagics, self).__init__(shell)
 
     @line_cell_magic
     def v(self, line, cell=None):
@@ -112,9 +112,9 @@ class VentureMagics2(Magics):
     
 def load_ipython_extension(ip):
     """Load the extension in IPython."""
-    ip.register_magics(VentureMagics2)
+    ip.register_magics(VentureMagics)
     if found_venture_ripl==1: 
-        print 'loaded VentureMagics2 with ripl "ipy_ripl"'
+        print 'loaded VentureMagics with ripl "ipy_ripl"'
     
 try:
     ip = get_ipython()
