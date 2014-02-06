@@ -6,6 +6,7 @@ Test Venturemagics2.py by running it on notebook, IPython terminal, and regular
 Python interpreter. Calls a notebook tester (nb_tester.py), a notebook
 (test_venturemagics2_nb.ipynb), and a .ipy file (test_venturemagics2_ipy.ipy).
 """
+print 'Python interpreter will print "ip=get_ipython() didnt run" if working correctly: \n'
 
 
 ## Testing in IPython Notebook
