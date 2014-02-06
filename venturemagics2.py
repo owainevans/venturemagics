@@ -37,21 +37,41 @@ class VentureMagics2(Magics):
         def directive_summary(directive):
             'returns summary of directive and its current value'
             ins = directive['instruction']
+            d=''
 
             if ins == 'assume':
-                d = '%s %s   =  %s' % (ins, directive['symbol'], directive['value'])
+                if 'symbol' in directive:
+                    d = '%s %s   =  %s' % (ins, directive['symbol'], directive['value'])
             elif ins == 'observe':
-                if isinstance(directive['expression'],str):
+                if isinstance(directive['expression'],str):  # [observe x value]
                     d = '%s %s   =  %s' % (ins, directive['expression'], directive['value'])
-                else:
+                elif isinstance(directive['expression'],list):  # [observe (+ 1 x) value]
                     d = '%s (%s ... )    =  %s' % (ins, directive['expression'][0], directive['value'])
             elif ins == 'predict':
-                d = '%s (%s ... )   =  %s' % (ins, directive['expression'][0], directive['value'])
+                if isinstance(directive['expression'],str): # [predict x] = value
+                    d = '%s %s  =  %s' % (ins, directive['expression'],directive['value'])
+                elif isinstance(directive['expression'],dict):  # [predict 10] = 10
+                    d = '%s %s  =  %s' % (ins,directive['value'], directive['value'])
+                elif isinstance(directive['expression'],list):
+                    d = '%s (%s ... )   =  %s' % (ins, directive['expression'][0], directive['value'])
 
             return '[directive_id: %s].  %s ' % (directive['directive_id'], d)
             
 
+        ## FIXME:
+        # Need to make things work after ipython %reset
+        # recreate ipy_ripl in case of %reset
+        # try:
+        #     ipy_ripl.__doc__
+        # except:
+        #     try:
+        #         from venture.shortcuts import make_church_prime_ripl
+        #         ipy_ripl = make_church_prime_ripl()
+        #     except:
+        #         print 'failed to make venture ripl'
+
         
+
         ## LINE MAGIC
         if cell is None:
             
