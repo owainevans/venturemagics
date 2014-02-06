@@ -113,7 +113,8 @@ class VentureMagics2(Magics):
 def load_ipython_extension(ip):
     """Load the extension in IPython."""
     ip.register_magics(VentureMagics2)
-    if found_venture_ripl==1: print 'loaded NewVentureMagics'
+    if found_venture_ripl==1: 
+        print 'loaded VentureMagics2 with ripl "ipy_ripl"'
     
 try:
     ip = get_ipython()
